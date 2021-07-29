@@ -1,0 +1,41 @@
+<html>
+<head>
+<title> Fished. D;> </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",1000,750);
+var gameover_text = new sjs.Text("Uh, Oh. Game Over!",35,"red");
+gameover_text.centerH().offset(0,85);
+//Trolly Boi
+  var sadTroll = new sjs.Image("Images/sadtroll.png");
+  sadTroll.setSize(480, 240);
+  sadTroll.moveTo(80, 500);
+
+  var getgud = new sjs.Text("git gud bro.", 28, "red");
+      getgud.moveTo(800, 200);
+//Taunting enemies
+var fishy = new sjs.Image("Images/Pufferboss.png");
+    fishy.noBounds = true;
+    fishy.moveTo(600, 280);
+
+//button
+  var Ok = new sjs.Button("al rite m8!", function(){
+window.location = "Bossmeme.html";
+});
+      Ok.center().offset(0, 200);
+//start over button
+  var giveUp = new sjs.Button("naw m8, 1'm dun!", function(){
+    window.location = "Menu.html";
+  });
+  giveUp.center().offset(0, 350);
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> Revenge of the Dead Memes! </h1>
+
+<div id="target" style="margin:auto;background:black;"></div>
+</body>
+Uh Oh. Troll Face hasn't became a dead meme and the other dead memes think it is unfair. They plan on murder to solve this problem. Help save troll and help him evolve into trollge.
+</html>

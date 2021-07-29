@@ -1,0 +1,57 @@
+<html>
+<head>
+<title> Trolled. ;( </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",1000,750);
+var gameover_text = new sjs.Text("Uh, Oh. Game Over!",35,"white");
+gameover_text.centerH().offset(0,85);
+//Trolly Boi
+  var sadTroll = new sjs.Image("Images/sadtroll.png");
+  sadTroll.setSize(480, 240);
+  sadTroll.moveTo(80, 500);
+
+  var getgud = new sjs.Text("git gud bro.", 28, "cyan");
+      getgud.moveTo(800, 200);
+//Meany Heads
+var doot = new sjs.Image("Images/DootR.png");
+    doot.noBounds = true;
+    doot.setSize(300, 300);
+    doot.moveTo(600, 300);
+var bean = new sjs.Image("Images/BeanosR.png");
+    bean.setSize(110, 330);
+    bean.noBounds = true;
+    bean.moveTo(735, 400);    
+var chung = new sjs.Image("Images/Chunger.png");
+    chung.noBounds = true;
+    chung.setSize(600, 560);
+    chung.moveTo(600, 240);
+var doge = new sjs.Image("Images/DogeOver.png");
+    doge.setSize(210, 210);
+    doge.moveTo(550, 600);
+var emo = new sjs.Image("Images/Emoji.png");
+    emo.noBounds = true;
+    emo.setSize(85, 85);
+    emo.moveTo(800, 250);
+//button
+  var Ok = new sjs.Button("al rite m8!", function(){
+window.location = "Scarymeme.html";
+});
+      Ok.center().offset(0, 200);
+// start over button
+  var giveUp = new sjs.Button("naw m8, Im dun!", function(){
+  	window.location = "Menu.html";
+  });
+giveUp.center(). offset (0, 350);
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> Revenge of the Dead Memes! </h1>
+
+<div id="target" style="margin:auto;background:black;"></div>
+</body>
+Uh Oh. Troll Face hasn't became a dead meme and the other dead memes think it is unfair. They plan on murder to solve this problem. Help save troll and help him evolve into trollge.
+</html>

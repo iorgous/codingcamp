@@ -1,0 +1,66 @@
+<html>
+<head>
+<title> Trolled. :( </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",1000,750);
+var background = new sjs.Image("Images/Funny_Sky.png");
+    background.setSize(sjs.getWidth(), sjs.getHeight());
+var gameover_text = new sjs.Text("Wanna Give It a Try ?!",35,"yellow");
+gameover_text.centerH().offset(0,85);
+
+var wasd_text = new sjs.Text("Use WASD to move.", 25, "darkred");
+    wasd_text.center().offset(340, -245);
+
+var arrow_text = new sjs.Text("Use the Arrow Keys to Aim.", 30, "darkgreen");
+    arrow_text.center().offset(275, -200);
+
+var fire_txt = new sjs.Text("... and Use the Space Bar to Fire!", 35, "darkpurple");
+    fire_txt.center().offset(200, -155);
+//Trolly Boi
+ var Troll = new sjs.Image("Images/TrollR.png");
+     Troll.setSize(180, 150);
+     Troll.type = "funny";
+     Troll.moveTo(25, 600);
+
+//button
+  var Ok = new sjs.Button("Let's Go!", function(){
+window.location = "Meme.html";
+});
+      Ok.center().offset(0, 75);
+//funny animation
+setInterval(function(){
+var problem = new sjs.Image("Images/trollbullet.png");
+    problem.friction = 0;
+    problem.type = "chad";
+    problem.setSize(120, 40);
+    problem.moveTo(25, 650);
+var rage = new sjs.Image("Images/Angry_Left.png");
+    rage.type = "meatbag";
+    rage.friction = 0;
+    rage.noBounds = true;
+    rage.setSize(100, 100);
+    rage.moveTo(910, 600);
+    Troll.setImage("Images/AttackTrollR.png");
+    problem.pushRight(10);
+    rage.pushLeft(10);
+   setTimeout(function(){
+      Troll.setImage("Images/TrollR.png");
+   }, 555);
+}, 7007);
+
+sjs.onHit("meatbag", "chad", function(x,y){
+x.destroy();
+y.destroy();
+});
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> Revenge of the Dead Memes! </h1>
+
+<div id="target" style="margin:auto;background:lightblue;"></div>
+</body>
+Uh Oh. Troll Face hasn't became a dead meme and the other dead memes think it is unfair. They plan on murder to solve this problem. Help save troll and help him evolve into trollge.
+</html>

@@ -1,0 +1,42 @@
+<html>
+<head>
+<title> Trolled. >:D </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",1000,750);
+var background = new sjs.Image("Images/Boss_Sky.png");
+    background.setSize(sjs.getWidth(), sjs.getHeight());
+var gameover_text = new sjs.Text("Hoorah! Troll has survived and evolved into trollge!",35,"yellow");
+gameover_text.centerH().offset(0,85);
+
+var wasd_text = new sjs.Text("Wanna do it again, but resart all the way when you die?", 25, "yellow");
+    wasd_text.center().offset(280, -200);
+
+//Trolly Boi
+ var Troll = new sjs.Image("Images/Trollge.png");
+     Troll.setSize(180, 150);
+     Troll.type = "funny";
+     Troll.moveTo(25, 600);
+
+//Puffer
+  var puff = new sjs.Image("Images/Pufferboss.png");
+      puff.setSize(300, 300);
+      puff.moveTo(900,500);
+
+//button
+  var Ok = new sjs.Button("YEAH!", function(){
+window.location = "index.html";
+});
+      Ok.center().offset(0, 75);
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> Revenge of the Dead Memes! </h1>
+
+<div id="target" style="margin:auto;background:lightblue;"></div>
+</body>
+Uh Oh. Troll Face hasn't became a dead meme and the other dead memes think it is unfair. They plan on murder to solve this problem. Help save troll and help him evolve into trollge.
+</html>

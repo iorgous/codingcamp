@@ -1,0 +1,290 @@
+<html>
+<head>
+<title> We do a bit of Trollin??? </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",1000,750);
+var Shoot = true;
+var background = new sjs.Image("Images/Scary_Sky.png");
+    background.setSize(sjs.getWidth(), sjs.getHeight());
+    sjs.left_screen.offset(-500,0);
+    sjs.right_screen.offset(500,0);
+// Trolly Boi
+var Troll = new sjs.Image("Images/TrollR.png");
+    Troll.type = "player";
+    Troll.setSize(90,75);
+    Troll.center();
+    Troll.friction = 0.3;
+    Troll.accel = 0.6;
+// Detection of Facing
+var TrollDirect = 1;
+//Player Movement
+sjs.keyDown(W_KEY, function(){
+	Troll.pushUp();
+});
+sjs.keyDown(S_KEY, function(){
+	Troll.pushDown();
+}); 
+sjs.keyDown(A_KEY, function(){
+	Troll.pushLeft();
+});
+sjs.keyDown(D_KEY, function(){
+	Troll.pushRight();
+});
+sjs.keyDown(RIGHT_KEY, function(){
+	Troll.setImage("Images/TrollR.png");
+	TrollDirect = 1;
+});
+
+sjs.keyDown(LEFT_KEY, function(){
+	Troll.setImage("Images/TrollL.png");
+	TrollDirect = 2;
+});
+
+sjs.keyDown(DOWN_KEY, function(){
+	Troll.setImage("Images/TrollD.png");
+	TrollDirect = 3;
+});
+
+sjs.keyDown(UP_KEY, function(){
+	Troll.setImage("Images/TrollU.png");
+	TrollDirect = 4;
+})
+//Troll Attack
+sjs.keyDown(SPACE_KEY, function(){
+	if(Shoot == true){
+	if(TrollDirect == 1){
+		Troll.setImage("Images/AttackTrollR.png");
+        var problem = new sjs.Image("Images/trollbullet.png");
+        problem.type = "PlayerBullet";
+        problem.setSize(75,25);
+        problem.moveTo(Troll.x, Troll.y);
+        problem.friction = 0;
+        problem.noBounds = true;
+        problem.pushRight(8);
+        Shoot = false;
+		setTimeout(function(){
+          Troll.setImage("Images/TrollR.png");
+          Shoot = true;
+		},550);
+	}else{
+		if(TrollDirect == 2){
+			Troll.setImage("Images/AttackTrollL.png");
+     var problem = new sjs.Image("Images/trollbullet.png");
+        problem.type = "PlayerBullet";
+        problem.setSize(75,25);
+        problem.moveTo(Troll.x, Troll.y);
+        problem.friction = 0;
+        problem.noBounds = true;
+        problem.pushLeft(8);
+        Shoot = false;
+		setTimeout(function(){
+          Troll.setImage("Images/TrollL.png");
+          Shoot = true;
+		},550);
+		}else{
+			if(TrollDirect == 3){
+			Troll.setImage("Images/AttackTrollD.png");
+     var problem = new sjs.Image("Images/trollbullet.png");
+        problem.type = "PlayerBullet";
+        problem.setSize(75,25);
+        problem.moveTo(Troll.x, Troll.y);
+        problem.friction = 0;
+        problem.noBounds = true;
+        problem.pushDown(8);
+        Shoot = false;
+		setTimeout(function(){
+          Troll.setImage("Images/TrollD.png");
+          Shoot = true;
+		},550);
+		}else{
+			if(TrollDirect == 4){
+			Troll.setImage("Images/AttackTrollU.png");
+     var problem = new sjs.Image("Images/trollbullet.png");
+        problem.type = "PlayerBullet";
+        problem.setSize(75,25);
+        problem.moveTo(Troll.x, Troll.y);
+        problem.friction = 0;
+        problem.noBounds = true;
+        problem.pushUp(8);
+        Shoot = false;
+		setTimeout(function(){
+          Troll.setImage("Images/TrollU.png");
+          Shoot = true;
+		},550);
+		}
+		}
+		}
+	}
+}    
+});//end of spacebar
+
+// Funny enemy haha ;(
+   setInterval(function(){
+    var UnfunnyJoke = new sjs.Image("Images/Red.png");
+        UnfunnyJoke.setSize(60, 90);
+        UnfunnyJoke.friction = 0;
+        UnfunnyJoke.type = "enemy";
+        UnfunnyJoke.noBounds = true;
+        UnfunnyJoke.moveTo(0, Math.random()*(UnfunnyJoke.getClamp().y));
+    var knife = new sjs.Image("Images/Knife.png");
+        knife.setSize(90, 30);
+        knife.friction = 0;
+        knife.type = "hazard";
+        knife.noBounds = true;
+        knife.moveTo(UnfunnyJoke.x, UnfunnyJoke.y);
+        knife.pushRight(10);
+      setTimeout(function(){
+        UnfunnyJoke.pushLeft(5);
+      }, 500);
+   }, 2000);
+
+//Monke enemy
+  setTimeout(function(){
+     setInterval(function(){
+         var Monk = new sjs.Image("Images/Monke.png");
+             Monk.type = "hazard";
+             Monk.noBounds = true;
+             Monk.setGravity(4);
+             Monk.setSize(200, 200);
+             Monk.moveTo(Math.random()* 905, 500);
+             Monk.friction = 0.2;
+             Monk.pushUp(60);
+
+     }, 3500);
+  }, 13200);
+//end of monk
+// Start of Ugandan Knuckless
+setTimeout(function(){
+     var nuckels = new sjs.Image("Images/UK.png");
+         nuckels.type = "brawler";
+         nuckels.setSize(160, 115);
+         nuckels.friction = 0;
+         nuckels.moveTo(910, Troll.y);
+         nuckels.pushLeft(13);
+         nuckels.noBounds = true;
+    setInterval(function(){
+         nuckels.moveTo(910, Troll.y);
+    }, 2000);
+}, 26400);
+// end of the wae
+
+// Poggers
+setTimeout(function(){
+       var pog = new sjs.Image("Images/POG.png");
+           pog.type = "spawner";
+           pog.noBounds = true;
+           pog.setSize(45, 75);
+           pog.moveTo(0, 0);
+    var pog_cycle = true;
+    setInterval(function(){
+       if(pog_cycle == true){
+           var pog1 = new sjs.Image("Images/Bitcoin.png");
+               pog1.type = "hazard";
+               pog1.noBounds = true;
+               pog1.setSize(45, 45);
+               pog1.friction = 0;
+               pog1.moveTo(pog.x, pog.y);
+               pog1.pushRight(18);
+           var pog2 = new sjs.Image("Images/Dogecoin.png");
+               pog2.type = "enemy";
+               pog2.noBounds = true;
+               pog2.setSize(45, 45);
+               pog2.friction = 0;
+               pog2.moveTo(pog.x, pog.y);
+               pog2.pushRight(22);
+               pog2.pushDown(6);
+           var pog3 = new sjs.Image("Images/OK.png");
+               pog3.type = "enemy";
+               pog3.noBounds = true;
+               pog3.setSize(45, 45);
+               pog3.friction = 0;
+               pog3.moveTo(pog.x, pog.y);
+               pog3.pushRight(12);
+               pog3.pushDown(11);
+              pog_cycle = false;    
+       }else{
+            var pog4 = new sjs.Image("Images/Bitcoin.png");
+               pog4.type = "hazard";
+               pog4.noBounds = true;
+               pog4.setSize(45, 45);
+               pog4.friction = 0;
+               pog4.moveTo(pog.x, pog.y);
+               pog4.pushRight(16);
+               pog4.pushDown(14);
+          var pog5 = new sjs.Image("Images/Dogecoin.png");
+               pog5.type = "enemy";
+               pog5.noBounds = true;
+               pog5.setSize(45, 45);
+               pog5.friction = 0;
+               pog5.moveTo(pog.x, pog.y);
+               pog5.pushDown(18);
+              var pog6 = new sjs.Image("Images/OK.png");
+               pog6.type = "enemy";
+               pog6.noBounds = true;
+               pog6.setSize(45, 45);
+               pog6.friction = 0;
+               pog6.moveTo(pog.x, pog.y);
+               pog6.pushRight(12);
+               pog6.pushDown(20);
+              pog_cycle = true;    
+       }
+    }, 1000);      
+}, 39600);
+
+sjs.onHit("hazard",["right_screen","left_screen","top_screen","bottom_screen"], function(x,y){
+	x.destroy();
+});
+sjs.onHit("enemy",["right_screen","left_screen","top_screen","bottom_screen"], function(x,y){
+    x.destroy();
+});
+sjs.onHit("player", "hazard", function(x,y){
+   x.destroy();
+   window.location = "Spookgameover.html";
+});
+
+sjs.onHit("player", "brawler", function(x,y){
+  x.destroy();
+  window.location = "Spookgameover.html";
+});
+
+sjs.onHit("PlayerBullet", "enemy", function(x,y){
+    y.destroy();
+    x.destroy();
+    Lolshoot = false;
+});
+sjs.onHit("enemy", "player", function(x,y){
+    y.destroy();
+    window.location = "Spookgameover.html";
+});
+sjs.onHit("PlayerBullet","hazard", function(x,y){
+          x.destroy();
+});
+
+
+sjs.onHit("PlayerBullet",["right_screen","left_screen","top_screen","bottom_screen"], function(x,y){
+x.destroy();
+});
+//next level
+
+setTimeout(function(){
+window.location = "Bossmeme.html"
+
+}, 52950);
+
+
+
+
+
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> Revenge of the Dead Memes! </h1>
+
+<div id="target" style="margin:auto;background:lightblue;"></div>
+</body>
+Uh Oh. Troll Face hasn't became a dead meme and the other dead memes think it is unfair. They plan on murder to solve this problem. Help save troll and help him evolve into trollge.
+</html>

@@ -1,0 +1,211 @@
+<html>
+<head>
+<title> We do a bit of Fishin'?!?! </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",1000,750);
+var Shoot = true;
+var background = new sjs.Image("Images/Boss_Sky.png");
+    background.setSize(sjs.getWidth(), sjs.getHeight());
+    sjs.left_screen.offset(-500,0);
+    sjs.right_screen.offset(500,0);
+// Trolly Boi
+var Troll = new sjs.Image("Images/TrollR.png");
+    Troll.type = "player";
+    Troll.setSize(90,75);
+    Troll.center();
+    Troll.friction = 0.3;
+    Troll.accel = 0.6;
+// Detection of Facing
+var TrollDirect = 1;
+//Player Movement
+sjs.keyDown(W_KEY, function(){
+	Troll.pushUp();
+});
+sjs.keyDown(S_KEY, function(){
+	Troll.pushDown();
+}); 
+sjs.keyDown(A_KEY, function(){
+	Troll.pushLeft();
+});
+sjs.keyDown(D_KEY, function(){
+	Troll.pushRight();
+});
+sjs.keyDown(RIGHT_KEY, function(){
+	Troll.setImage("Images/TrollR.png");
+	TrollDirect = 1;
+});
+
+sjs.keyDown(LEFT_KEY, function(){
+	Troll.setImage("Images/TrollL.png");
+	TrollDirect = 2;
+});
+
+sjs.keyDown(DOWN_KEY, function(){
+	Troll.setImage("Images/TrollD.png");
+	TrollDirect = 3;
+});
+
+sjs.keyDown(UP_KEY, function(){
+	Troll.setImage("Images/TrollU.png");
+	TrollDirect = 4;
+})
+//Troll Attack
+sjs.keyDown(SPACE_KEY, function(){
+	if(Shoot == true){
+	if(TrollDirect == 1){
+		Troll.setImage("Images/AttackTrollR.png");
+        var problem = new sjs.Image("Images/trollbullet.png");
+        problem.type = "PlayerBullet";
+        problem.setSize(75,25);
+        problem.moveTo(Troll.x, Troll.y);
+        problem.friction = 0;
+        problem.noBounds = true;
+        problem.pushRight(8);
+        Shoot = false;
+		setTimeout(function(){
+          Troll.setImage("Images/TrollR.png");
+          Shoot = true;
+		},750);
+	}else{
+		if(TrollDirect == 2){
+			Troll.setImage("Images/AttackTrollL.png");
+     var problem = new sjs.Image("Images/trollbullet.png");
+        problem.type = "PlayerBullet";
+        problem.setSize(75,25);
+        problem.moveTo(Troll.x, Troll.y);
+        problem.friction = 0;
+        problem.noBounds = true;
+        problem.pushLeft(8);
+        Shoot = false;
+		setTimeout(function(){
+          Troll.setImage("Images/TrollL.png");
+          Shoot = true;
+		},750);
+		}else{
+			if(TrollDirect == 3){
+			Troll.setImage("Images/AttackTrollD.png");
+     var problem = new sjs.Image("Images/trollbullet.png");
+        problem.type = "PlayerBullet";
+        problem.setSize(75,25);
+        problem.moveTo(Troll.x, Troll.y);
+        problem.friction = 0;
+        problem.noBounds = true;
+        problem.pushDown(8);
+        Shoot = false;
+		setTimeout(function(){
+          Troll.setImage("Images/TrollD.png");
+          Shoot = true;
+		},750);
+		}else{
+			if(TrollDirect == 4){
+			Troll.setImage("Images/AttackTrollU.png");
+     var problem = new sjs.Image("Images/trollbullet.png");
+        problem.type = "PlayerBullet";
+        problem.setSize(75,25);
+        problem.moveTo(Troll.x, Troll.y);
+        problem.friction = 0;
+        problem.noBounds = true;
+        problem.pushUp(8);
+        Shoot = false;
+		setTimeout(function(){
+          Troll.setImage("Images/TrollU.png");
+          Shoot = true;
+		},750);
+		}
+		}
+		}
+	}
+}    
+});//end of spacebar
+//puffyfish
+var puff = new sjs.Image("Images/Pufferboss.png");
+    puff.setSize(400, 400);
+    puff.noBounds = true;
+    puff.type = "boss";
+    puff.moveTo(580, 80);
+var boss_health = 61;
+var health = new sjs.Text("Boss Health: 61", 21, "blue");
+    puff.bounce();
+    puff.friction = 0;
+    puff.pushDown(5);
+
+setInterval(function(){
+   var carrot = new sjs.Image("Images/CarROT.png");
+       carrot.type = "hazard";
+       carrot.setSize(300, 75);
+       carrot.moveTo(puff.x, puff.y + 100);
+       carrot.noBounds = true;
+       carrot.friction = 0;
+       carrot.pushLeft(10);
+}, 2000);
+
+    setInterval(function(){
+       var fall = new sjs.Image("Images/fall.png");
+           fall.type = "hazard";
+           fall.setSize(98, 250);
+           fall.friction = 0;
+           fall.noBounds = true;
+           fall.moveTo(Troll.x, 0);
+           fall.pushDown(8);
+    },4000);
+
+if(boss_health == 0){
+  puff.destroy();
+
+};
+
+sjs.onHit("hazard",["right_screen","left_screen","bottom_screen"], function(x,y){
+	x.destroy();
+});
+sjs.onHit("enemy",["right_screen","left_screen","top_screen","bottom_screen"], function(x,y){
+    x.destroy();
+});
+sjs.onHit("player", "hazard", function(x,y){
+   x.destroy();
+   window.location = "Bossgameover.html";
+});
+sjs.onHit("PlayerBullet", "enemy", function(x,y){
+    y.destroy();
+    x.destroy();
+    Lolshoot = false;
+});
+sjs.onHit("enemy", "player", function(x,y){
+    y.destroy();
+    window.location = "Bossgameover.html";
+});
+sjs.onHit("PlayerBullet","hazard", function(x,y){
+          x.destroy();
+});
+sjs.onHit("player", "boss", function(x,y){
+       x.destroy();
+      window.location = "Bossgameover.html";
+});
+sjs.onHit("PlayerBullet", "boss", function(x,y){
+      x.destroy();
+    boss_health = boss_health - 1;
+    health.setText("Boss Health: "+boss_health);
+});
+
+sjs.onHit("PlayerBullet",["right_screen","left_screen","top_screen","bottom_screen"], function(x,y){
+x.destroy();
+});
+//next level
+
+
+
+
+
+
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> Revenge of the Dead Memes! </h1>
+
+<div id="target" style="margin:auto;background:lightblue;"></div>
+</body>
+Uh Oh. Troll Face hasn't became a dead meme and the other dead memes think it is unfair. They plan on murder to solve this problem. Help save troll and help him evolve into trollge.
+</html>
