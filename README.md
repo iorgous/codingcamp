@@ -7,4 +7,4 @@ HOW TO SUBMIT:
 2. Email the zipped folder to sky01james@yahoo.com
 
 HOW TO PLAY:
-Go to [this website](skyjay1.github.io/codingcamp/index.html)
+Go to [this website](https://skyjay1.github.io/codingcamp/index.html)
