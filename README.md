@@ -1,4 +1,4 @@
-# codingcamp
+# codingcamp.github.io
 SimplyCoding.org 
 
 HOW TO SUBMIT:
