@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> custom game </title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+sjs.open(90000,850);
+
+
+
+var background = new sjs.Image("images/moon.jpg");
+background.setSize(sjs.getWidth(), sjs.getHeight(
+	));
+
+//Player Properties below here
+var player = new sjs.Image("Images/robo (1).png");
+player.type = "player";
+player.setSize(120, 120);
+player.pushRight();
+
+
+sjs.keyDown(RIGHT_KEY, function(){
+player.setImage("Images/robo.right.png");
+player.pushRight();
+r_facing = true;
+});
+
+sjs.keyDown(LEFT_KEY, function(){
+	player.setImage("Images/robo (1).png");
+player.pushLeft();
+r_facing = false;
+});
+
+sjs.keyDown(UP_KEY, function(){
+player.pushUp();
+});
+
+
+sjs.keyDown(DOWN_KEY, function(){
+player.pushDown();
+});
+
+ //Score
+var score = 0;
+var score_txt = new sjs.Text("Score: 0",21,"orange");
+
+sjs.onHit("player","enemy", function(x,y){
+if(x.getWidth() > y.getWidth() && x.getHeight() > y.getHeight()) {
+score = score + 1;
+score_txt.setText("Score: "+score);
+localStorage.setItem("score", score);
+  
+} else {
+x.destroy();
+window.location = "gameover.html";
+}
+y.destroy();
+});
+
+
+
+//Enemies
+setInterval(function(){
+  var speed = Math.round(1 + Math.random()*10);
+   if(Math.random() > 0.5){
+var enemy = new sjs.Image("Images/eye.gif");
+enemy.type = "enemy";
+enemy.setSize(150,150);
+enemy.noBounds = true;
+enemy.friction = 0;
+enemy.friction = 0;
+enemy.pushRight(speed);
+enemy.scaleSize(.5 + Math.random() * 1.2);
+enemy.moveTo(-enemy.getWidth(), Math.random()*(enemy.getClamp().y));
+ var enemy = new sjs.Image("Images/ufo.png");
+enemy.type = "enemy";
+enemy.setSize(150,150);
+enemy.noBounds = true;
+enemy.friction = 0;
+enemy.pushLeft(speed);
+enemy.scaleSize(.5 + Math.random() * 1.2);
+enemy.moveTo(sjs.getWidth(), Math.random()*(enemy.getClamp().y));
+   }
+	},1000);
+
+sjs.left_screen.offset(-500);
+sjs.right_screen.offset(500);
+
+var canShoot = true;
+sjs.keyDown(SPACE_KEY, function(){
+if(canShoot == true){
+	canShoot = false;
+var laser = new sjs.Image("Images/laserr.png");
+laser.type = "laserr";
+laser.setSize(100,50);
+laser.friction = 0;
+laser.noBounds = true;
+if(r_facing == true){
+laser.moveTo(player.getX()+44,player.getY()+7);
+laser.pushRight(25.5);
+} else {
+laser.moveTo(player.getX()+-60,player.getY()+7);
+laser.pushLeft(25.5);
+}
+setTimeout(function(){
+canShoot = true;
+},300);
+
+} //end canShoot if statement
+
+}); //end keyDown function SPACE_KEY
+
+
+//onHit functions
+
+
+sjs.onHit("enemy",["left_screen","right_screen"], function(x,y){
+sjs.bounceOff(x,y);
+});
+
+
+sjs.onHit("player","enemy", function(x,y){
+x.destroy();
+window.location = "gameover.html";
+});
+
+sjs.onHit("laserr","enemy", function(x,y){
+x.destroy();
+y.destroy();
+score = score + 1;
+score_txt.setText("Score: "+score);
+if(score >= 10){
+window.location = "win.html";
+}
+});
+
+
+sjs.onHit("laser",["right_screen","left_screen"], function(x,y){
+x.destroy();
+});
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> custom game! </h1>
+
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>
