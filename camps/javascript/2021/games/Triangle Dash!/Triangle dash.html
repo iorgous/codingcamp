@@ -1,0 +1,95 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title> triangle Dash! </title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",800,500);
+
+//background Music
+var playM = new Audio('Music/Back_On_Track.mp3');
+var toggle = true;
+var musicOn = false;
+sjs.keyDown(A_KEY, function(){
+	if(toggle == true){
+		if(musicOn == false){
+		playM.play();	
+		musicOn = true;
+		} else {
+			playM.pause();
+			musicOn = false;
+		}	
+	} //end if toggle statement	
+}); //end keyDown Function	
+
+//background
+var background = new sjs.Image("Images/Background.png");
+background.setSize(9000,500);
+
+//Timer
+var Time_Left = 30;
+var Time_Left_txt = new sjs.Text("Time Left: 30",21,"white");
+Time_Left_txt.fixed = true;
+
+setInterval(function(){
+	Time_Left = Time_Left - 1;
+	Time_Left_txt.setText("Time Left: "+Time_Left);
+},1000);	
+
+//player properties
+var player = new sjs.Image("Images/Dashing.gif");
+player.type = "player";
+player.center().offset(-300,350);
+player.setSize(60,60);
+player.fixed = true;
+player.setGravity();
+
+//camera
+var camera = new sjs.Image("Images/Camera.png");
+camera.center();
+camera.pushRight(8);
+camera.friction = 0;
+
+sjs.scrollable(camera, background);
+
+window.addEventListener("keyup", function(e){
+if(e.keyCode == SPACE_KEY){
+player.setImage("Images/Jumping.gif");
+player.pushUp(10);
+} //end if statement
+}); //end EventListener function
+
+
+
+setInterval(function(){
+	var spawn = Math.round(1 + Math.random()*10);
+	if(Math.random() > 0.5){
+		var Triangle = new sjs.Image("Images/Triangle.png");
+		Triangle.type = "Triangle";
+		Triangle.moveTo(camera.x+400, 550);
+	}
+},1000);
+
+setTimeout(function(){
+	window.location = "win.html";
+},30000);	
+
+sjs.onHit("Triangle","left_screen", function(x,y){
+	x.destroy();
+});	
+
+sjs.onHit("player", "Triangle", function(x,y){
+	x.destroy();
+	window.location = "gameover.html";
+});	
+
+}
+</script>
+</head>
+<body onload="start()">
+<h1> triangle Dash! </h1>
+
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>

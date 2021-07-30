@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Index </title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+sjs.open("target", 800, 500);
+
+var background = new sjs.Image("Images/Index Background.gif");
+background.setSize(800,500);
+
+var text = new sjs.Text("Triangle Dash!",28,"white");
+text.centerH().offset(0,100);
+
+var text2 = new sjs.Text("Press the spacebar to jump over triangles! Try to jump earlier than you want as the triangles can bite!",28,"white");
+
+text2.centerH().offset(0,350);	
+
+
+var StartBtn = new sjs.Button("Start!", function(){
+	window.location = "Triangle dash.html"
+});	
+
+StartBtn.centerH().offset(0,200);
+
+} // end Start
+</script>
+</head>
+<body onload="start()">
+<h1> Index </h1>
+
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>
