@@ -1,4 +1,4 @@
-# codingcamp.github.io
+# codingcamp
 SimplyCoding.org 
 
 HOW TO SUBMIT:
@@ -7,4 +7,4 @@ HOW TO SUBMIT:
 2. Email the zipped folder to sky01james@gmail.com
 
 HOW TO PLAY:
-Go to [this website](https://iorgous.github.io/codingcamp.github.io/) (if that doesn't work, try [this one](https://iorgous.github.io/codingcamp/))
+Go to [this website](https://iorgous.github.io/codingcamp/) (if that doesn't work, try [this one](https://iorgous.github.io/codingcamp/))
