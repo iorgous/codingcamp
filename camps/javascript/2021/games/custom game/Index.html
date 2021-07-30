@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Menu </title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+sjs.open();
+
+var background = new sjs.Image("Images/chicken.gif");
+
+
+var menu_text = new sjs.Text("Start",30,"blue")
+menu_text.centerH();
+
+var game_text = new sjs.Text("Use the left and right arrow keys to move and space to fly. Survive for 30 seconds",20
+,"black");
+game_text.centerH().offset(0, 30);
+var startBtn = new sjs.Button("Start", function(){
+window.location = "Code.html";
+});
+
+var why = new sjs.Button("Level3 is impossible", function(){
+window.location = "WHY.html";
+
+});
+
+var tes = new sjs.Button(" incomplete level 2", function(){
+window.location = "tes.html";
+});
+
+tes.bottom();
+
+startBtn.center();
+
+var info_text = new sjs.Text("Created By THE CHICKEN",20,"black");
+
+info_text.bottom().centerH();
+
+}
+</script>
+</head>
+<body onload="start()">
+<h1> Code </h1>
+
+<div id="target" style="margin:auto;background:red;"></div>
+</body>
+</html>

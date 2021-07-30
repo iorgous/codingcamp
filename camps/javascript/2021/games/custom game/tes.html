@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Custom Game! </title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+sjs.open("target", 800, 500);
+
+var background = new sjs.Image("Images/hunter_area.png");
+background.setSize(sjs.getWidth(), sjs.getHeight());
+
+//player
+var player = new sjs.Image("Images/chicken_right.png");
+player.type = "player";
+player.setSize(100,50);
+player.friction = .1;
+player.accel = .5;
+player.bottom();
+player.setGravity(2);
+
+sjs.keyDown(RIGHT_KEY, function(){
+player.setImage("Images/chicken_right.png");
+player.pushRight();
+});
+
+sjs.keyDown(LEFT_KEY, function(){
+player.setImage("Images/chicken0.png");
+player.pushLeft();
+});
+
+sjs.keyDown(SPACE_KEY, function(){
+player.pushUp();
+
+});
+
+//enemy
+var hunter = new sjs.Image("Images/hunter_shoot.png")
+hunter.type = "mate";
+hunter.setSize(150,150);
+hunter.bounce();
+hunter.pushUp(5);
+hunter.friction = 0;
+hunter.right();
+
+
+
+setInterval(function(){
+var speed = Math.round(1 + Math.random()*20);
+if(Math.random() > 0.75){
+}
+else {
+var enemy = new sjs.Image("Images/bullet.png");
+enemy.type = "enemy";
+enemy.setSize(50,50);
+enemy.noBounds = true;
+enemy.friction = 0;
+enemy.pushLeft(speed);
+enemy.moveTo(sjs.getWidth(), Math.random()*(enemy.getClamp().y));
+
+}
+},250);
+
+
+
+
+//timer
+var timer = 15;
+       var tt = new sjs.Text("Bullets: 45",20,"white");
+       tt.right().offset(-10);
+      var time = setInterval(function(){
+        timer--;
+        tt.setText("Bullets: "+timer);
+        if(timer <= 0){
+          var btn = new sjs.Button("Clickhere?", function(){
+          window.location = "Win.html";
+          });
+          btn.center();
+          hw = 20000000
+          clearInterval(time);
+        }
+       },1000);
+
+
+
+
+  //Health Bar
+       var ht = 20;
+       var hw = 200;
+       var health = new sjs.Text("Health",ht,"white");
+       health.node.style.height = "20px";
+       health.node.style.width = hw+"px";
+       health.node.style.zIndex = 3;
+       health.moveTo(10,10);
+       health.node.style.backgroundColor = "red";
+            
+
+       sjs.onHit("player","enemy",function(x,y){
+            y.destroy();
+            hw -= 25;
+            health.node.style.width = hw+"px";
+            console.log(hw);
+            if(hw <=0){
+                 x.destroy();
+                 var ex = new sjs.Image("http://rs651.pbsrc.com/albums/uu236/416o/explosion.gif~c200");
+                 ex.moveTo(x.x,x.y);
+		 var btn = new sjs.Button("You Lose! Play Again?", function(){
+       		window.location = "Index.html";
+       		 });
+          	btn.center();
+          	clearInterval(time);
+                 setTimeout(function(){
+                      ex.destroy();
+                 },900);
+            }
+
+       });
+
+
+
+
+
+
+
+
+
+
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> Custom Game! </h1>
+
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>

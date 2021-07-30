@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Custom Game! </title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+sjs.open("target", 800, 500);
+
+var background = new sjs.Image("Images/hunter_area.png");
+background.setSize(sjs.getWidth(), sjs.getHeight());
+
+//player
+var player = new sjs.Image("Images/chicken_right.png");
+player.type = "player";
+player.setSize(100,50);
+player.friction = .1;
+player.accel = .5;
+player.bottom();
+player.setGravity(1);
+
+sjs.keyDown(RIGHT_KEY, function(){
+player.setImage("Images/chicken_right.png");
+player.pushRight();
+});
+
+sjs.keyDown(LEFT_KEY, function(){
+player.setImage("Images/chicken0.png");
+player.pushLeft();
+});
+
+//power
+setInterval(function(){
+var x = Math.floor(Math.random() * 783);
+var y = Math.floor(Math.random() * 770);
+var powerUp = new sjs.Image("Images/worm.png");
+powerUp.type = "powerUp";
+powerUp.setGravity();
+powerUp.setSize(50,50);
+powerUp.noBounds = true;
+powerUp.friction = .2;
+powerUp.moveTo(x,y);
+}, 1000);
+
+sjs.onHit("powerUp","bottom_screen",function(x,y){
+x.destroy();
+
+});
+
+sjs.onHit("player","powerUp",function(x,y){
+var canJump = true;
+sjs.keyDown(UP_KEY, function(){
+if(canJump == true){
+canJump = false;
+player.pushUp(10);
+player.setImage("Images/chicken_right.png");
+}
+});
+setTimeout(function(){
+;
+}, 40000);
+y.destroy();
+});
+
+//enemy
+setInterval(function(){
+var speed = Math.round(1 + Math.random()*10);
+if(Math.random() > 0.75){
+var enemy = new sjs.Image("Images/raccoon_move_right.gif");
+enemy.type = "enemy";
+enemy.setSize(100,50);
+enemy.noBounds = true;
+enemy.friction = 0;
+enemy.pushRight(speed);
+enemy.bottom();
+}
+else {
+var enemy = new sjs.Image("Images/raccoon_move_left.gif");
+enemy.type = "enemy";
+enemy.setSize(100,50);
+enemy.noBounds = true;
+enemy.friction = 0;
+enemy.pushleft(speed);
+enemy.bottom();
+
+}
+},700);
+
+sjs.left_screen.offset(-500);
+sjs.right_screen.offset(500);
+
+
+sjs.onHit("enemy",["right_screen","left_screen"], function(x,y){
+x.destroy();
+});
+
+
+//enemy
+setInterval(function(){
+var speed = Math.round(1 + Math.random()*10);
+if(Math.random() > 0.5){
+var enemy = new sjs.Image("Images/Hawk_right.gif");
+enemy.type = "enemy";
+enemy.setSize(150,100);
+enemy.noBounds = true;
+enemy.friction = 0;
+enemy.pushRight(speed);
+}
+else {
+var enemy = new sjs.Image("Images/Hawk_left.gif");
+enemy.type = "enemy";
+enemy.setSize(150,100);
+enemy.noBounds = true;
+enemy.friction = 0;
+enemy.pushLeft(speed);
+
+enemy.moveTo(sjs.getWidth(), Math.random()*(enemy.getClamp().y));
+
+}
+},7500);
+
+sjs.left_screen.offset(-500);
+sjs.right_screen.offset(500);
+
+
+sjs.onHit("enemy",["right_screen","left_screen"], function(x,y){
+x.destroy();
+});
+
+
+
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> Custom Game! </h1>
+
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>
