@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Menu </title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+sjs.open();
+var background = new sjs.Image("Images/menu.png");
+background.setSize(500,400);
+
+var startBtn = new sjs.Button("Start", function(){
+window.location = "fishh game.html";
+});
+
+startBtn.center();
+
+var info_text = new sjs.Text("Created By A person",20,"white");
+
+info_text.bottom().centerH();
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> Menu </h1>
+
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<html>
+<head>
+<title> fishing game </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",500,400);
+
+var background = new sjs.Image("Images/backback.png");
+background.setSize(500,400);
+
+//Score
+var score = 0;
+var score_txt = new sjs.Text("Score: 0", 21, "green");
+
+var score2 = 0;
+var score2_txt = new sjs.Text("Score: 0", 21, "blue");
+score2_txt.right();
+score2_txt.offset(-10,0);
+
+//player1
+
+var player = new sjs.Image("Images/player1.gif");
+player.type = "player";
+player.setSize(95,100);
+player.top().offset(60,150);
+
+var player1catch = new sjs.Image("Images/player1catch.png");
+player1catch.type = "playercatch1";
+player1catch.setSize(85,95);
+player1catch.top().offset(110,190);
+
+sjs.keyDown(A_KEY, function(){
+player1catch.pushLeft(.4);
+});
+
+sjs.keyDown(D_KEY, function(){
+player1catch.pushRight(.4);
+});
+
+//player2
+var player2 = new sjs.Image("Images/player2.gif");
+player2.type = "player";
+player2.setSize(94,99);
+player2.top();
+player2.right();
+;player2.offset(-60,150);
+
+var player2catch = new sjs.Image("Images/player2catch.png");
+player2catch.type = "playercatch2";
+player2catch.setSize(85,100);
+player2catch.top();
+player2catch.right();
+;player2catch.offset(-110,190);
+
+sjs.keyDown(LEFT_KEY, function(){
+player2catch.pushLeft(.4);
+});
+
+sjs.keyDown(RIGHT_KEY, function(){
+player2catch.pushRight(.4);
+});
+
+var normalfish = false;
+var fastfish = false;
+var bigfish = false;
+var deadfish = false;
+
+//enemies
+setInterval(function(){
+	if (normalfish == false) {
+		var speed = Math.round(1 + Math.random()*2);
+		var enemy = new sjs.Image("Images/normalfish.gif")
+		enemy.type = "enemy";
+		enemy.setSize(50,50);
+		enemy.noBounds = true;
+		enemy.friction =0;
+		enemy.pushRight(speed)
+		enemy.moveTo(100,260);
+		normalfish = true;
+	}
+	if (fastfish == false) {
+		var speed = Math.round(1 + Math.random()*2);
+		var enemy = new sjs.Image("Images/fastfish.gif")
+		enemy.type = "enemy";
+		enemy.setSize(30,30);
+		enemy.noBounds = true;
+		enemy.friction =0;
+		enemy.pushRight(speed)
+		enemy.moveTo(100,260);
+		fastfish = true;
+	}
+	if (bigfish == false) {
+		var speed = Math.round(1 + Math.random()*2);
+		var enemy = new sjs.Image("Images/bigfish.gif")
+		enemy.type = "enemy";
+		enemy.setSize(70,70);
+		enemy.noBounds = true;
+		enemy.friction =0;
+		enemy.pushRight(speed)
+		enemy.moveTo(100,260);
+		bigfish = true;
+
+	}
+	if (deadfish == false) {
+		var speed = Math.round(1 + Math.random()*2);
+		var enemy = new sjs.Image("Images/deadfish.gif")
+		enemy.type = "enemy";
+		enemy.setSize(40,40);
+		enemy.noBounds = true;
+		enemy.friction =0;
+		enemy.pushRight(speed)
+		enemy.moveTo(100,260);
+		deadfish = true;
+	}
+	
+},1000);
+
+sjs.left_screen.offset(100);
+sjs.right_screen.offset(-100);
+
+sjs.onHit("enemy",["right_screen","left_screen"], function(x,y){
+	x.destroy();
+	normalfish = false;
+	fastfish = false;
+	bigfish= false;
+	deadfish = false;
+});
+
+
+var catch1 = false;
+var catch2 = false;
+
+sjs.keyDown(F_KEY, function(){
+	catch1 = true;
+});
+
+sjs.keyDown(SPACE_KEY, function(){
+	catch2 = true;
+});
+
+window.addEventListener("keyup", function(e){
+	if(e.keyCode == F_KEY){
+		catch1 = false
+	} else if (e.keyCode == SPACE_KEY){
+		catch2 = false;
+	} //end if statement
+}); //end EventListener function
+
+sjs.onHit("enemy","playercatch1", function(x,y){
+	if(catch1)
+	{
+		x.destroy();
+		score = score + 1;
+		score_txt.setText("Score: "+ score);
+		normalfish = false;
+		fastfish = false;
+		bigfish= false;
+		deadfish = false;
+	}
+});
+
+sjs.onHit("enemy","playercatch2", function(x,y){
+	if (catch2) 
+	{
+		x.destroy();
+		score2 = score2 + 1;
+		score2_txt.setText("Score: "+ score2);
+		normalfish = false;
+		fastfish = false;
+		bigfish= false;
+		
+	}
+});
+
+
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> fishing game </h1>
+
+<div id="target" style="margin:auto;background:white;"></div>
+</body>
+</html>

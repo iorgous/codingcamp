@@ -1,0 +1,27 @@
+<html>
+<head>
+<title> Custom Game </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",600,500);
+
+var background = new sjs.Image("Images/fishbackgroumd.png");
+background.setSize(600,500);
+
+//player1
+
+var player = new sjs.Image("Images/player1.gif");
+player.type = "player";
+player.setSize(85,90);
+player.top();
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> Custom Game </h1>
+
+<div id="target" style="margin:auto;background:cyan;"></div>
+</body>
+</html>
