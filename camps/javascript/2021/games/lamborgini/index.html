@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Menu </title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+sjs.open();
+
+var background = new sjs.Image("Images/tokio drift.jfif");
+background.setSize(sjs.getWidth(), sjs.getHeight());
+
+var menu_text = new sjs.Text("points/(r) is to reverse",28,"lime");
+menu_text.centerH();
+
+var menu_text2 = new sjs.Text("choose your car",28,"lime");
+menu_text2.centerH().offset(0,30);
+
+
+var soundEffect = new Audio('Music/TokyoDrift.mp3');
+soundEffect.currentTime = 0;
+
+soundEffect.play();
+
+sjs.keyDown(13, function(){
+window.location = "lamborgini.html";
+
+});
+
+//Score
+var score = 0;
+var score_txt = new sjs.Text("Score: 0", 21, "orange");
+score_txt.setText("Score: "+localStorage.getItem("score"));
+
+
+var startBtn1 = new sjs.Button("lambor", function(){
+window.location = "lambor.html";
+});
+startBtn1.center();
+startBtn1.offset(-150,0);
+
+var startBtn2 = new sjs.Button("danali", function(){
+window.location = "danali.html";
+});
+startBtn2.center();
+startBtn2.offset(-75,0);
+
+var startBtn3 = new sjs.Button("Start", function(){
+window.location = "lamborgini.html";
+});
+startBtn3.center();
+startBtn3.offset(0,0);
+
+var startBtn4 = new sjs.Button("sport-car", function(){
+window.location = "sport-car.html";
+});
+startBtn4.center();
+startBtn4.offset(75,0);
+
+var startBtn5 = new sjs.Button("crash!!!", function(){
+window.location = "crash!!!.html";
+});
+startBtn5.center();
+startBtn5.offset(150,0);
+
+
+var info_text = new sjs.Text("Created By Jon Galt",20,"black");
+
+info_text.bottom().centerH();
+
+
+} //end start
+
+</script>
+</head>
+<body onload="start()">
+<h1> lamborgini </h1>
+
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>

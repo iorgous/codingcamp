@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Menu </title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+sjs.open(800,500);
+
+var background = new sjs.Image("Images/headphones.jfif");
+
+background.setSize(2000,1000);
+
+var player = new sjs.Image("Images/sport-car (1).png");
+player.type = "player";
+player.setSize(88,44);
+player.friction = .1;
+player.accel = 1.4;
+
+var soundEffect = new Audio('Music/TokyoDrift.mp3');
+soundEffect.currentTime = 0;
+
+soundEffect.play();
+
+
+sjs.scrollable(player,background);
+
+
+var faceingRight = true;
+sjs.keyDown(RIGHT_KEY, function(){
+player.setImage("Images/lambor (1).png");
+player.pushRight();
+faceingRight = true;
+});
+
+
+sjs.keyDown(LEFT_KEY, function(){
+player.setImage("Images/lambor.png");
+player.pushLeft();
+faceingRight = false;
+});
+sjs.keyDown(UP_KEY, function(){
+player.pushUp();
+});
+
+
+var faceingRight = true;
+sjs.keyDown(R_KEY, function(){
+	if(faceingRight)
+	{
+		player.pushLeft();
+	}
+	else{
+		player.pushRight();
+	}
+});
+
+
+
+
+
+
+sjs.keyDown(DOWN_KEY, function(){
+player.pushDown();
+});
+//Enemies
+setInterval(function(){
+var speed = Math.round(1 + Math.random()*10);if(Math.random() > 0.5){
+var enemy = new sjs.Image("Images/sport-car (2).png");
+enemy.type = "enemy";
+enemy.setSize(88,44);
+enemy.noBounds = true;
+enemy.friction = 0;
+enemy.pushRight(speed);
+
+enemy.moveTo(-enemy.getWidth(), Math.random()*(enemy.getClamp().y));
+
+} else {
+var enemy = new sjs.Image("Images/sport-car (1).png");
+enemy.type = "enemy";
+enemy.setSize(88,44);
+enemy.noBounds = true;
+enemy.friction = 0;
+enemy.pushLeft(speed);
+
+enemy.moveTo(sjs.getWidth(), Math.random()*(enemy.getClamp().y));
+
+}
+
+},1000);
+
+
+sjs.left_screen.offset(-500);
+sjs.right_screen.offset(500);
+
+
+
+sjs.onHit("enemy",["right_screen","left_screen"], function(x,y){
+x.destroy();
+});
+
+
+sjs.onHit("nuke",["right_screen","left_screen"], function(x,y){
+x.destroy();
+});
+sjs.onHit("nuke", "enemy",function(x,y) {
+	x.destroy();
+	y.destroy();
+	score = score + 1;
+	score_txt.setText("score: "+score);
+	localStorage.setItem("score", score);
+});
+//Score
+var score = 0;
+var score_txt = new sjs.Text("Score: 0", 21, "orange");
+score_txt.fixed = true;
+
+sjs.onHit("player","enemy", function(x,y){
+
+	x.destroy();
+
+	window.location = "gameover.html";
+});
+
+window.addEventListener("keyup", function(e){
+	if(e.keyCode == SPACE_KEY) {
+
+		//heares where we code
+		if(faceingRight == true) {
+			var nuke = new sjs.Image("Images/bullet.png");	
+			nuke.moveTo(player.x +100, player.y);
+		} else {
+			var nuke = new sjs.Image("Images/bulletLeft.png");
+			nuke.moveTo(player.x -30, player.y);
+		}
+
+		
+		nuke.type = "nuke";
+		nuke.setSize(50,50);
+		
+		nuke.friction = 0;
+		nuke.noBounds = true;
+		
+		if(faceingRight == true) {
+			nuke.pushRight(100)	
+		} else {
+			nuke.pushLeft(100);
+		}
+	}
+});
+
+
+
+
+
+
+
+
+
+} //end start
+//rail
+function rail(x,y){
+var rail = new sjs.Image("Images/rail.png");
+rail.type = "rail";
+rail.setSize(50,50);
+rail.moveTo(x,y);	
+}
+</script>
+</head>
+<body onload="start()">
+<h1> lamborgini </h1>
+
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>
