@@ -1,0 +1,42 @@
+<html>
+<head>
+<title> Custom Game </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",500,400);
+
+var background = new sjs.Image("Images/pride.png");
+background.setSize(500,400)
+
+//Player Properties below here
+var player = new sjs.Image("Images/rose.png");
+player.type = "player";
+player.setSize(100,100);
+
+sjs.keyDown(RIGHT_KEY, function(){
+player.pushRight();
+});
+
+sjs.keyDown(LEFT_KEY, function(){
+player.pushLeft();
+});
+
+sjs.keyDown(UP_KEY, function(){
+player.pushUp();
+});
+
+sjs.keyDown(DOWN_KEY, function(){
+player.pushDown();
+});
+
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> pride </h1>
+
+<div id="target" style="margin:auto;background:gray;"></div>
+</body>
+</html>
