@@ -1,0 +1,38 @@
+<html>
+<head>
+<title> The Clicker Game MENU</title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",600,600);
+var background = new sjs.Image("Images/custom game background1.png");
+background.setSize(sjs.getWidth(),sjs.getHeight());
+
+var startBtn = new sjs.Button("Start", function(){
+window.location = "Custom Game.html";
+});
+
+startBtn.center();
+
+var menu_text = new sjs.Text("THE CLICKER GAME",28,"white");
+
+menu_text.centerH();
+
+var menu_text2 = new sjs.Text("Menu",28,"black");
+
+menu_text2.centerleft();
+
+
+
+
+
+
+
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>

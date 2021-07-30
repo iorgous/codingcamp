@@ -1,0 +1,242 @@
+<html>
+<head>
+	<title> The Clicker Game </title>
+	<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+	<script>
+	function start(){
+		sjs.open("target",600,600);
+		var background = new sjs.Image("Images/custom game background1.png");
+		background.setSize(sjs.getWidth(),sjs.getHeight());
+
+
+
+
+
+
+
+
+
+
+
+//Score
+var score = 0;
+var score_txt = new sjs.Text("Score: 0", 21, "orange");
+var perclick = 0;
+
+
+
+
+
+
+//stone
+var stone = new sjs.Image("Images/stone.png");
+stone.type = "stone";
+stone.setSize(100,100);
+stone.onClick(function() {
+
+	score = score + 1+perclick;
+	score_txt.setText("Score: "+score);
+	localStorage.setItem("score", score);
+	if (score >12){
+		//coal
+		var coal_ore = new sjs.Image("Images/coal ore.png");
+		coal_ore.type = "coal_ore";
+		coal_ore.setSize(100,100);
+		coal_ore.onClick(function() {
+
+			score = score + 2+perclick;
+			score_txt.setText("Score: "+score);
+			localStorage.setItem("score", score);
+			if (score >50){
+				//lazuli
+		var lazuli_ore = new sjs.Image("Images/lazuli ore.png");
+		lazuli_ore.type = "lazuli_ore";
+		lazuli_ore.setSize(100,100);
+		lazuli_ore.onClick(function() {
+
+			score = score + 3.5+perclick;
+			score_txt.setText("Score: "+score);
+			localStorage.setItem("score", score);
+			if (score >250){
+				//Iron
+		var iron_ore = new sjs.Image("Images/iron ore.png");
+		iron_ore.type = "iron_ore";
+		iron_ore.setSize(100,100);
+		iron_ore.onClick(function() {
+
+			score = score + 6+perclick;
+			score_txt.setText("Score: "+score);
+			localStorage.setItem("score", score);
+			if (score >750){
+				//copper
+		var copper_ore = new sjs.Image("Images/copper ore.png");
+		copper_ore.type = "copper_ore";
+		copper_ore.setSize(100,100);
+		copper_ore.onClick(function() {
+
+			score = score + 12.5+perclick;
+			score_txt.setText("Score: "+score);
+			localStorage.setItem("score", score);
+			if (score >2500){
+				//gold
+		var gold_ore = new sjs.Image("Images/gold ore.png");
+		gold_ore.type = "gold_ore";
+		gold_ore.setSize(100,100);
+		gold_ore.onClick(function() {
+
+			score = score + 25+perclick;
+			score_txt.setText("Score: "+score);
+			localStorage.setItem("score", score);
+			if (score >6000){
+				//diamond
+		var diamond_ore = new sjs.Image("Images/diamond ore.png");
+		diamond_ore.type = "diamond_ore";
+		diamond_ore.setSize(100,100);
+		diamond_ore.onClick(function() {
+
+			score = score + 50+perclick;
+			score_txt.setText("Score: "+score);
+			localStorage.setItem("score", score);
+			if (score >15000){
+				//emerald
+		var emerald_ore = new sjs.Image("Images/emerald ore.png");
+		emerald_ore.type = "emerald_ore";
+		emerald_ore.setSize(100,100);
+		emerald_ore.onClick(function() {
+
+			score = score + 1500+perclick;
+			score_txt.setText("Score: "+score);
+			localStorage.setItem("score", score);
+			
+
+		});
+
+		emerald_ore.centerV();
+	}
+
+		});
+
+		diamond_ore.bottom();
+	}
+
+		});
+
+		gold_ore.centerV();
+	}
+
+		});
+
+		copper_ore.bottom();
+	}
+
+		});
+
+		iron_ore.centerV();
+	}
+
+		});
+
+		lazuli_ore.bottom();
+	}
+	
+
+		});
+
+		coal_ore.centerV();
+	}
+
+
+});
+
+stone.bottom();
+//end of ore clickers
+
+
+
+     
+	     //Upgrades
+		//Shovel
+		var shovel = new sjs.Image("Images/Shovel.png");
+		shovel.type = "shovel";
+		shovel.setSize(100,100);
+		shovel.onClick(function() {
+
+			if(score>10){
+				score = score-10;
+				perclick = perclick+3;
+				score_txt.setText("Score: "+score);
+			localStorage.setItem("score", score);
+
+			}
+
+		});
+shovel.right();
+//Pickaxe
+		var pickaxe = new sjs.Image("Images/pickaxe.jfif");
+		pickaxe.type = "pickaxe";
+		pickaxe.setSize(100,100);
+		pickaxe.onClick(function() {
+
+			if(score>18){
+				score = score-18;
+				perclick = perclick+8;
+				score_txt.setText("Score: "+score);
+			localStorage.setItem("score", score);
+
+			}
+
+		});
+pickaxe.centerV().right();
+//Stone Drill
+		var stone_drill = new sjs.Image("Images/stone drill.png");
+		stone_drill.type = "stone_drill";
+		stone_drill.setSize(100,100);
+		stone_drill.onClick(function() {
+
+			if(score>50){
+				score = score-50;
+				perclick = perclick+25;
+				score_txt.setText("Score: "+score);
+			localStorage.setItem("score", score);
+
+			}
+
+		});
+stone_drill.bottom().right();
+//Diamond Drill
+		var Diamond_drill = new sjs.Image("Images/diamond drill.png");
+		Diamond_drill.type = "Diamond_drill";
+		Diamond_drill.setSize(100,100);
+		Diamond_drill.onClick(function() {
+
+			if(score>1000){
+				score = score-1000;
+				perclick = perclick+100;
+				score_txt.setText("Score: "+score);
+			localStorage.setItem("score", score);
+
+			}
+
+		});
+Diamond_drill.right();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+	<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>
