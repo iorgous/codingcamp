@@ -1,0 +1,145 @@
+<html>
+<head>
+<title> the Bermuda triangle </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",800,500);
+var background = new sjs.Image("Images/map3.gif");
+background.setSize(2594, 500);/* Player and Object Properties */
+
+var player = new sjs.Image("Images/r_girl-2.gif");
+player.type = "player";
+player.setSize(85,93);
+player.setGravity(3);
+player.bottom();
+player.friction = .3;
+player.noBounds = true;
+sjs.scrollable(player,background);
+
+sjs.onHit("player","platform", function(x,y){
+sjs.stoppedBy(x,y);
+if(canJump == false && x.y < y.y-85){
+canJump = true;
+r_track = 0;
+l_track = 0
+  }
+});
+
+//Player Properties
+var r_images = ["Images/r_girl-0.gif", "Images/r_girl-1.gif", "Images/r_girl-2.gif", "Images/r_girl-3.gif", "Images/r_girl-4.gif"];
+
+var l_images = ["Images/l_girl-0.gif", "Images/l_girl-1.gif", "Images/l_girl-2.gif", "Images/l_girl-3.gif", "Images/l_girl-4.gif"];
+
+var r_facing = true;
+var r_track = 0;
+var l_track = 0;
+
+sjs.keyDown(RIGHT_KEY, function(){
+r_facing = true;
+r_track = r_track + 1;
+player.pushRight(2);
+if(r_track == 4){
+r_track = 0;
+}
+player.setImage(r_images[r_track]);
+
+}); //end Right key
+
+sjs.keyDown(LEFT_KEY, function(){
+r_facing = false;
+l_track = l_track + 1;
+player.pushLeft(2);
+if(l_track == 4){
+l_track = 0;
+}
+player.setImage(l_images[l_track]);
+
+}); //end Left key
+
+//Jumping Code
+var canJump = true;
+sjs.keyDown(UP_KEY, function(){
+if(canJump == true){
+canJump = false;
+player.pushUp(55);
+if(r_facing == true){
+player.setImage("Images/r_girl-2.gif");
+r_track = 2;
+} else {
+player.setImage("Images/l_girl-2.gif");
+l_track = 2;
+}
+}//end if statement
+});//end keyDown function
+
+sjs.onHit("player","bottom_screen",function(x,y){
+sjs.stoppedBy(x,y);
+if(canJump == false){
+canJump = true;
+r_track = 0;
+l_track = 0;
+}
+});
+
+sjs.onHit("player",["right_screen","left_screen","top_screen"],function(x,y){
+sjs.stoppedBy(x,y);
+});
+
+platform(199,300);
+platform(300,199);
+platform(980,300);
+platform(990,300);
+platform(964,394);
+platform(900,300);
+platform(850,300);
+platform(700,300);
+platform(600,300);
+platform(1050,300);
+platform(1150,400);
+platform(1300,300);
+platform(1400,500);
+platform(1500,300);
+platform(1600,200);
+platform(1700,300);
+platform(1800,400);
+platform(1900,300);
+platform(2000,300);
+platform(2110,200);
+platform(2120,200);
+platform(2130,200);
+platform(2140,100);
+
+var lava = new sjs.Image("Images/lava.gif");
+lava.setSize(2500, 500);
+lava.offset(0,600);
+lava.friction=0;
+lava.noBounds = true;
+lava.pushUp(0.5);
+lava.type = "lava";
+sjs.onHit("player","lava",function(x,y){
+	window.location = "index.html";
+});
+} //end start
+
+//Platform Function
+
+function platform(x,y){
+var platform = new sjs.Image("Images/hk.gif");
+platform.type = "platform";
+platform.setSize(100,20);
+platform.moveTo(x,y);
+
+}
+
+</script>
+</head>
+<body onload="start()">
+<h1> the Bermuda triangle </h1>
+<center>
+
+</center>
+
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>

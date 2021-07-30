@@ -1,0 +1,31 @@
+<html>
+<head>
+<title> the Bermuda triangle </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+function start(){    
+sjs.open("target", 800, 600);
+var background = new sjs.Image("Images/map2.gif");
+background.setSize(sjs.getWidth(), sjs.getHeight());
+var menutxt = new sjs.Text("The Bermuda triangle", 21, "red");
+menutxt.centerH();
+
+var startBtn = new sjs.Button("Start", function(){
+window.location = "The Bermuda Triangle.html";
+});
+
+startBtn.center();
+
+}//end start
+
+</script>
+</head>
+<body onload="start()">
+<h1> the Bermuda triangle </h1>
+<center>
+
+</center>
+
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>
