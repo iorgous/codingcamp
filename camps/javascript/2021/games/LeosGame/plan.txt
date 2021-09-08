@@ -1,0 +1,5 @@
+1. The duck character
+2. Like a parkour game. for the duck and go to the destination
+3. platforms, enemies, powerups. platforms are for obstacle courses.
+the powerups gives a ability to kill the enemies.
+4. you can make your own parkour place

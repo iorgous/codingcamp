@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> GAME</title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+	sjs.open("target",800,500);
+	var restartBtn = new sjs.Button("start", function(){
+		restartBtn.type = "restartBtn";
+		window.location = "Gamemode.html";
+	
+	});
+	var gameover_txt = new sjs.Text("Dodge those balls!", 44, "orange");
+	gameover_txt.center().offset(0,-100);
+	restartBtn.center();
+	var gameover_txt = new sjs.Text("Balls spawn every few seconds. Dodge them as long as you can to get points. You can shoot them for extra points. Use < ^ > to move. Use down arow to shoot and don't run out of fuel!", 25, "orange");
+	gameover_txt.center().offset(0,100);
+	
+}
+</script>
+</head>
+<body onload="start()">  
+<h1> GAME</h1>
+<center>
+</center>
+<div id="target" style="margin:auto;background:grey;"></div>
+
+</body>
+</html>

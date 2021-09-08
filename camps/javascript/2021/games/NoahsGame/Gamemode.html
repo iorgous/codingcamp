@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Gamemode</title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+	sjs.open("target",800,500);
+	var restartBtn = new sjs.Button("Regular", function(){
+		restartBtn.type = "restartBtn";
+		window.location = "Mygame.html";
+	
+	});
+	var InsaneBtn = new sjs.Button("Insane", function(){
+		InsaneBtn.type = "InsaneBtn";
+		window.location = "Mode2.html";
+	});
+	var gameover_txt = new sjs.Text("Choose a Gamemode", 44, "black");
+	var Recomended_txt = new sjs.Text("*Recomended*", 10, "black");
+	Recomended_txt.center().offset(0,25);
+	gameover_txt.center().offset(0,-100);
+	restartBtn.center();
+	InsaneBtn.center();
+	InsaneBtn.offset(0,60);
+	
+}
+</script>
+</head>
+<body onload="start()">  
+<h1> Gamemode</h1>
+<center>
+</center>
+<div id="target" style="margin:auto;background:grey;"></div>
+
+</body>
+</html>

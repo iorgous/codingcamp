@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Menu </title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+sjs.open();
+var menu_text = new sjs.Text("Batchicken needs your help defeat all 5 levels to help batchicken", 28, "blue");
+menu_text.centerH();
+
+var level1Btn = new sjs.Button("Level 1", function(){
+window.location = "level1.html";
+});
+level1Btn.center().offset(0, 0);
+
+var level2Btn = new sjs.Button("level 2", function(){
+window.location = "level2.html";
+});
+level2Btn.center().offset(0, 20);
+
+var level3Btn = new sjs.Button("Level 3", function(){
+window.location = "level3.html";
+});
+level3Btn.center().offset(0, 40);
+
+var level4Btn = new sjs.Button("Level 4", function(){
+window.location = "level4.html";
+});
+level4Btn.center().offset(0, 60);
+
+var level5Btn = new sjs.Button("Level 5", function(){
+window.location = "level5.html";
+});
+level5Btn.center().offset(0, 81);
+
+var info_text = new sjs.Text("Created By kr8r09plays", 20, "black");
+info_text.bottom().centerH();
+}
+</script>
+</head>
+<body onload="start()">
+<h1> BATCHICKEN </h1>
+
+<div id="target" style="margin:auto;background;black;"></div>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<html>
+<head>
+<title> BATCHICKEN </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+var level = [];
+function start(){
+sjs.open("target",800,500);
+var background = new sjs.Image("Images/city.jpg");
+background.setSize(2500, 500);
+
+sjs.loadImageArray('[{"width":59,"height":30,"x":637.5,"y":185,"sx":0,"sy":0,"topSpeed":10,"src":"Images/j.jpg","alt":"add text","type":"platform","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":364.5,"y":277,"sx":0,"sy":0,"topSpeed":10,"src":"Images/j.jpg","alt":"add text","type":"platform","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":75.5,"y":72,"sx":0,"sy":0,"topSpeed":10,"src":"Images/j.jpg","alt":"add text","type":"platform","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":210.5,"y":336,"sx":0,"sy":0,"topSpeed":10,"src":"Images/j.jpg","alt":"add text","type":"platform","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":281.5,"y":74,"sx":0,"sy":0,"topSpeed":10,"src":"Images/j.jpg","alt":"add text","type":"platform","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":630.5,"y":334,"sx":0,"sy":0,"topSpeed":10,"src":"Images/j.jpg","alt":"add text","type":"platform","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":636.672825453682,"y":245,"sx":0,"sy":0,"topSpeed":10,"src":"Images/j.jpg","alt":"add text","type":"platform","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":452.672825453682,"y":199,"sx":0,"sy":0,"topSpeed":10,"src":"Images/j.jpg","alt":"add text","type":"platform","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":803.672825453682,"y":163,"sx":0,"sy":0,"topSpeed":10,"src":"Images/j.jpg","alt":"add text","type":"platform","friction":0.05,"classType":"Image"},{"width":100,"height":100,"x":1113.5,"y":400,"sx":1.5,"sy":0,"ay":1,"topSpeed":10,"src":"Images/EVILCHICKEN.png","alt":"add text","type":"enemy","facingLeft":false,"left_img":"Images/EVILCHICKEN.png","right_img":"Images/EVILCHICKEN.png","friction":0,"classType":"Image","noBounds":true},{"width":100,"height":100,"x":2035,"y":400,"sx":-5,"sy":0,"ay":1,"topSpeed":10,"src":"Images/EVILCHICKEN.png","alt":"add text","type":"enemy","facingLeft":true,"left_img":"Images/EVILCHICKEN.png","right_img":"Images/EVILCHICKEN.png","friction":0,"classType":"Image","noBounds":true},{"width":100,"height":100,"x":1810,"y":400,"sx":-5,"sy":1,"ay":1,"topSpeed":10,"src":"Images/EVILCHICKEN.png","alt":"add text","type":"enemy","facingLeft":true,"left_img":"Images/EVILCHICKEN.png","right_img":"Images/EVILCHICKEN.png","friction":0,"classType":"Image","noBounds":true},{"width":100,"height":100,"x":1645,"y":400,"sx":-5,"sy":1,"ay":1,"topSpeed":10,"src":"Images/EVILCHICKEN.png","alt":"add text","type":"enemy","facingLeft":true,"left_img":"Images/EVILCHICKEN.png","right_img":"Images/EVILCHICKEN.png","friction":0,"classType":"Image","noBounds":true},{"width":100,"height":100,"x":1525,"y":400,"sx":-5,"sy":1,"ay":1,"topSpeed":10,"src":"Images/EVILCHICKEN.png","alt":"add text","type":"enemy","facingLeft":true,"left_img":"Images/EVILCHICKEN.png","right_img":"Images/EVILCHICKEN.png","friction":0,"classType":"Image","noBounds":true},{"width":100,"height":100,"x":1311.5,"y":400,"sx":1.5,"sy":0,"ay":1,"topSpeed":10,"src":"Images/EVILCHICKEN.png","alt":"add text","type":"enemy","facingLeft":false,"left_img":"Images/EVILCHICKEN.png","right_img":"Images/EVILCHICKEN.png","friction":0,"classType":"Image","noBounds":true},{"width":100,"height":100,"x":1334,"y":400,"sx":1.5,"sy":1,"ay":1,"topSpeed":10,"src":"Images/EVILCHICKEN.png","alt":"add text","type":"enemy","facingLeft":false,"left_img":"Images/EVILCHICKEN.png","right_img":"Images/EVILCHICKEN.png","friction":0,"classType":"Image","noBounds":true},{"width":100,"height":100,"x":1353.5,"y":400,"sx":1.5,"sy":0,"ay":1,"topSpeed":10,"src":"Images/EVILCHICKEN.png","alt":"add text","type":"enemy","facingLeft":false,"left_img":"Images/EVILCHICKEN.png","right_img":"Images/EVILCHICKEN.png","friction":0,"classType":"Image","noBounds":true},{"width":100,"height":100,"x":953,"y":400,"sx":1.5,"sy":0,"ay":1,"topSpeed":10,"src":"Images/EVILCHICKEN.png","alt":"add text","type":"enemy","facingLeft":false,"left_img":"Images/EVILCHICKEN.png","right_img":"Images/EVILCHICKEN.png","friction":0,"classType":"Image","noBounds":true},{"width":100,"height":100,"x":975.5,"y":400,"sx":1.5,"sy":1,"ay":1,"topSpeed":10,"src":"Images/EVILCHICKEN.png","alt":"add text","type":"enemy","facingLeft":false,"left_img":"Images/EVILCHICKEN.png","right_img":"Images/EVILCHICKEN.png","friction":0,"classType":"Image","noBounds":true},{"width":59,"height":30,"x":1021.857897882544,"y":209,"sx":0,"sy":0,"topSpeed":10,"src":"Images/j.jpg","alt":"add text","type":"platform","friction":0.05,"classType":"Image"},{"width":80,"height":80,"x":1005.357897882544,"y":132,"sx":0,"sy":0,"topSpeed":10,"src":"Images/New Piskel.gif","alt":"add text","type":"flag","friction":0.05,"classType":"Image"}]');
+
+//Player Properties
+var player = new sjs.Image("Images/BATCHICKEN.gif");
+player.type = "player";
+player.setSize(100,100);
+player.setGravity(3);
+player.bottom();
+player.friction = .3;
+player.noBounds = true;
+
+sjs.scrollable(player,background);
+
+
+//Player movement controls
+
+var r_images = ["Images/BATCHICKEN.gif", "Images/BATCHICKEN.gif", "Images/BATCHICKEN.gif", "Images/BATCHICKEN.gif", "Images/BATCHICKEN.gif", "Images/BATCHICKEN.gi", "Images/BATCHICKEN.gif", "Images/BATCHICKEN.gif"];
+
+var l_images = ["Images/BATCHICKEN.gif", "Images/BATCHICKEN.gif", "Images/BATCHICKEN.gif", "Images/BATCHICKEN.gif", "Images/BATCHICKEN.gif", "Images/BATCHICKEN.gi", "Images/BATCHICKEN.gif", "Images/BATCHICKEN.gif"];
+
+var r_facing = true;
+var r_track = 0;
+var l_track = 0;
+
+sjs.keyDown(RIGHT_KEY, function(){
+	r_facing = true;
+	r_track = r_track + 1;
+	player.pushRight(2);
+	player.setImage("Images/BATCHICKEN.gif");
+	if(r_track == 7){
+		r_track = 0;
+	}
+	if(r_track >= 8){
+		player.setImage("Images/BATCHICKEN.gif");
+	}
+}); //end Right key
+
+sjs.keyDown(LEFT_KEY, function(){
+	r_facing = false;
+	l_track = l_track + 1;
+	player.pushLeft(2);
+	player.setImage("Images/BATCHICKEN.gif");
+	if(l_track == 7){
+		l_track = 0;
+	}
+	if(l_track >= 8){
+		player.setImage("Images/BATCHICKEN.gif");
+	}
+}); //end Left key
+
+
+//Jumping Code
+var canJump = true;
+sjs.keyDown(UP_KEY, function(){
+	if(canJump == true){
+		canJump = false;
+		player.pushUp(55);
+		if(r_facing == true){
+			player.setImage("Images/BATCHICKEN.gif");
+			r_track = 8;
+		} else {
+			player.setImage("Images/BATCHICKEN.gif");
+			l_track = 8;
+		}
+	} //end canJump if statement
+}); //end keyDown function
+
+window.addEventListener("keyup", function(e){
+	if(e.keyCode == RIGHT_KEY){
+		player.setImage("Images/BATCHICKEN.gif");
+		r_track = 0;
+	} else if (e.keyCode == LEFT_KEY){
+		player.setImage("Images/BATCHICKEN.gif");
+		l_track = 0;
+	} //end if statement
+}); //end EventListener function
+
+sjs.onHit("player","bottom_screen",function(x,y){
+	sjs.stoppedBy(x,y);
+	if(canJump == false){
+		canJump = true;
+		r_track = 0;
+		l_track = 0;
+	}
+});
+
+window.addEventListener("keyup", function(e){
+	if(e.keyCode == RIGHT_KEY){
+		player.setImage("Images/BATCHICKEN.png");
+		r_track = 0;
+	} else if (e.keyCode == LEFT_KEY){
+		player.setImage("Images/BATCHICKEN.gif");
+		l_track = 0;
+	} //end if statement
+}); //end EventListener function
+
+sjs.keyDown(DOWN_KEY, function(){
+	canShoot = false;
+	var laser = new sjs.Image("Images/bat.jfif");
+	laser.type = "laser";
+	laser.setSize(100,100);
+	laser.friction = 0;
+	laser.noBounds = true;
+	if(r_facing == true){
+		laser.moveTo(player.getX()+44,player.getY()+7);
+		laser.pushRight(25.5);
+	} else {
+		laser.moveTo(player.getX()+-60,player.getY()+7);
+		laser.pushLeft(25.5);
+	}
+	setTimeout(function(){
+		canShoot = true;
+	},1500);
+}); //end keyDown function DOWN_KEY
+
+
+
+sjs.onHit("player","flag", function(x,y){
+	setTimeout(function(){
+		window.location = "index.html";
+	},1600 );
+});
+sjs.onHit("player","platform", function(x,y){
+	sjs.stoppedBy(x,y);
+	if(canJump == false && x.y < y.y-85){
+		canJump = true;
+		r_track = 0;
+		l_track = 0;
+	}
+});
+
+sjs.onHit("enemy","bottom_screen", function(x,y){
+	sjs.stoppedBy(x,y);
+});
+
+sjs.onHit("enemy",["left_screen","right_screen"], function(x,y){
+	sjs.bounceOff(x,y);
+});
+
+sjs.onHit("enemy",["left_screen","right_screen"], function(x,y){
+	sjs.bounceOff(x,y);
+});
+
+sjs.onHit("enemy","platform", function(x,y){
+	if(x.isAboveOf(y) == true){
+		sjs.stoppedBy(x,y);
+	} else {
+		sjs.bounceOff(x,y);
+	}
+});
+
+sjs.onHit("player","enemy", function(x,y){
+	x.destroy();
+	window.location = "gameover.html";
+});
+
+sjs.onHit("laser","enemy", function(x,y){
+	x.destroy();
+	y.destroy();
+});
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> Platform Game </h1>
+<div id="target" style="margin:auto;background:blue;"></div>
+</body>
+</html>

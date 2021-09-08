@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Menu </title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+sjs.open();
+
+var menu_text = new sjs.Text("Duck Game! Make your own platform game! dodge enemies, collect points. use down arrow to shoot lasers when you pick up corn for the duck to eat.", 28, "white");
+menu_text.centerH();
+
+var designBtn = new sjs.Button("Design Level", function(){
+window.location = "platform.html";
+});
+designBtn.center();
+
+var info_text = new sjs.Text("Created By Leo the great", 20, "blue");
+info_text.bottom().centerH();
+
+}
+</script>
+</head>
+<body onload="start()">
+<h1> Duck Game menu </h1>
+
+<div id="target" style="margin:auto;background:cyan;"></div>
+</body>
+</html>

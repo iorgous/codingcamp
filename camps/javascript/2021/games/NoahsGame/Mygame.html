@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> A game</title>
+<script src="https://simplycodingcourses.com/files/simplyjs/simply.js"></script>
+<script>
+function start(){
+	sjs.open("target", 700, 400);
+	//background
+ var background = new sjs.Image("Images/background.jpg");
+	background.type = "background";
+	background.setSize(700,400);
+
+	var player = new sjs.Image("Images/player.png");
+	player.type = "player";
+	player.center();
+	player.setSize(40,40);
+	player.setGravity(3);
+	player.friction = .25;
+
+	var r_facing = false;
+
+	sjs.keyDown(LEFT_KEY, function(){
+		player.pushLeft(2);
+		r_facing = false;
+	});
+	sjs.keyDown(RIGHT_KEY, function(){
+			player.pushRight(2);
+			r_facing = true;
+	});
+	sjs.keyDown(UP_KEY, function(){
+		if(Fuel > 0)
+		{
+			player.pushUp(5);
+			 if(Fuel > 0)
+			 {
+			Fuel = Fuel -1;
+			Fuel_txt.setText("Fuel: "+Fuel);
+			}
+		}
+	});
+	var rand = Math.round(Math.random()*4 +1.5);
+	var Spawnspeed = 9000;
+	var ball = new sjs.Image("Images/ball.png");
+		 ball.type = "ball";
+  	 	 ball.setSize(75,50);
+  		 ball.centerH();
+ 		 ball.friction = 0;
+ 		 ball.bounce();
+ 		 ball.pushUp(rand);
+ 		 ball.pushRight(rand);
+ 		 var ball = new sjs.Image("Images/ball.png");
+		 ball.type = "ball";
+  	 	 ball.setSize(75,50);
+  		 ball.centerH();
+ 		 ball.friction = 0;
+ 		 ball.bounce();
+ 		 ball.pushUp(rand);
+ 		 ball.pushLeft(rand);
+setInterval(function(){
+	var spawn = Math.round(Math.random()*50);
+	var rand = Math.round(Math.random()*3 +1);
+	var ball = new sjs.Image("Images/ball.png");
+		 ball.type = "ball";
+  	 	 ball.setSize(75,50);
+  		 ball.centerH();
+ 		 ball.friction = 0;
+ 		 ball.bounce();
+ 		 ball.pushUp(rand);
+ 		 ball.pushLeft(rand);
+ 		 if(Spawnspeed > 1000)
+ 		 {
+ 		 	Spawnspeed = Spawnspeed - 1500;
+ 		 	setInterval(function(){
+ 		 		var spawn = Math.round(Math.random()*50);
+				var rand = Math.round(Math.random()*3 +1);
+				var ball = new sjs.Image("Images/ball.png");
+					 ball.type = "ball";
+			  	 	 ball.setSize(75,50);
+			  		 ball.centerH();
+			 		 ball.friction = 0;
+			 		 ball.bounce();
+			 		 ball.pushUp(rand);
+			 		 ball.pushLeft(rand);
+			 		},8000);
+ 		 }
+
+ },Spawnspeed);
+
+sjs.onHit("ball","ball", function(x,y){
+	sjs.bounceOff(x,y);
+	sjs.bounceOff(y,x);
+	});
+sjs.onHit("ball","player", function(x,y){
+	window.location = "Gameover.html";
+	y.destroy;
+	});
+var score = 0;
+var score_txt = new sjs.Text("Score: 0", 21, "orange");
+setInterval(function(){
+	score = score +1;
+	score_txt.setText("Score: "+score);
+},1000);
+//fuel
+var Fuel = 200;
+var Fuel_txt = new sjs.Text("Fuel: 200", 21, "orange");
+Fuel_txt.center().offset(-305,-10);
+
+
+var canShoot = true;
+sjs.keyDown(DOWN_KEY, function(){
+	if(Fuel > 0)
+	{
+		if(canShoot == true){
+			canShoot = false;
+			var laser = new sjs.Image("Images/laser.png");
+			laser.type = "laser";
+			laser.setSize(100,50);
+			laser.friction= 0;
+			laser.noBounds= true;
+			
+			laser.moveTo(player.getX()+15,player.getY()+5);
+			laser.pushRight(25.5);
+				//laser2
+			var laser2 = new sjs.Image("Images/laser.png");
+			laser2.type = "laser2";
+			laser2.setSize(100,50);
+			laser2.friction= 0;
+			laser2.noBounds= true;
+			laser2.moveTo(player.getX()+-60,player.getY()+5);
+			laser2.pushLeft(25.5);
+			 if(Fuel > 0)
+			 {
+			Fuel = Fuel -3;
+			Fuel_txt.setText("Fuel: "+Fuel);
+			}
+			setTimeout(function(){ 
+				canShoot = true;
+			},2000);
+		}//end canShoot if statement
+	}
+}); //end keyDown function DOWN_KEY
+
+sjs.onHit("ball","laser", function(x,y){
+	console.log("this works")
+	x.destroy();
+	y.destroy();
+	score = score +10;
+	});
+sjs.onHit("ball","laser2", function(x,y){
+	console.log("this works")
+	x.destroy();
+	y.destroy();
+	score = score +10;
+	});
+//GAS
+setInterval(function(){
+	var GAS = new sjs.Image("Images/GAS.png");
+	GAS.type = "GAS";
+	GAS.setSize(45,45);
+	var x = Math.floor(Math.random() * 700);
+	var y = Math.floor(Math.random() * 400);
+	GAS.moveTo(x,y);
+},10000);
+
+sjs.onHit("GAS","player", function(x,y){
+	x.destroy();
+	Fuel = Fuel +35;
+	Fuel_txt.setText("Fuel: "+Fuel);
+});
+
+}  
+</script>
+</head>
+<body onload="start()">  
+<h1> epic game</h1>
+<center>
+</center>
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>
